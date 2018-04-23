@@ -76,6 +76,15 @@ class testDBStorage(unittest.TestCase):
         state_obj = models.storage.get("State", state_id)
         self.assertEqual(state_obj, state)
 
+    def test_count_db_storage_works(self):
+        '''
+        Tests if the count method in db storage is working
+        '''
+        all_dict = models.storage.all()
+        all_count = len(all_dict)
+        count = models.storage.count()
+        self.assertEqual(all_count, count)
+
     def test_count_db_storage_no_class(self):
         '''
         Tests the count method in db storage when no class is passed
