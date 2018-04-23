@@ -58,10 +58,41 @@ class testDBStorage(unittest.TestCase):
 
     def test_delete_method(self):
         '''
-            Tests the delete method in db_storage
+        Tests the delete method in db_storage
         '''
         state = State(name="Texas")
         state.save()
         all_stored = models.storage.all()
         models.storage.delete(state)
         self.assertTrue(all_stored["State." + state.id])
+
+    def test_get_db_storage(self):
+        '''
+        Tests the get method in db storage
+        '''
+        state = State(name="Cali")
+        state_id = state.id
+        state.save()
+        state_obj = models.storage.get("State", state_id)
+        self.assertEqual(state_obj, state)
+
+    def test_count_db_storage_no_class(self):
+        '''
+        Tests the count method in db storage when no class is passed
+        '''
+        first_count = models.storage.count()
+        state = State(name="Colorado")
+        state.save()
+        second_count = models.storage.count()
+        self.assertTrue(first_count + 1, second_count)
+
+
+    def test_count_db_storage_class(self):
+        '''
+        Tests the count method in db storage when passing a class
+        '''
+        first_count = models.storage.count("State")
+        state = State(name="Colorado")
+        state.save()
+        second_count = models.storage.count("State")
+        self.assertTrue(first_count + 1, second_count)
