@@ -35,17 +35,17 @@ class FileStorage:
         '''
         key = str(obj.__class__.__name__) + "." + str(obj.id)
         value_dict = obj
-        FileStorage.__objects[key] = value_dict
+        self.__objects[key] = value_dict
 
     def save(self):
         '''
             Serializes __objects attribute to JSON file.
         '''
         objects_dict = {}
-        for key, val in FileStorage.__objects.items():
+        for key, val in self.__objects.items():
             objects_dict[key] = val.to_dict()
 
-        with open(FileStorage.__file_path, mode='w', encoding="UTF8") as fd:
+        with open(self.__file_path, mode='w', encoding="UTF8") as fd:
             json.dump(objects_dict, fd)
 
     def reload(self):
@@ -53,12 +53,12 @@ class FileStorage:
             Deserializes the JSON file to __objects.
         '''
         try:
-            with open(FileStorage.__file_path, encoding="UTF8") as fd:
-                FileStorage.__objects = json.load(fd)
-            for key, val in FileStorage.__objects.items():
+            with open(self.__file_path, encoding="UTF8") as fd:
+                self.__objects = json.load(fd)
+            for key, val in self.__objects.items():
                 class_name = val["__class__"]
                 class_name = models.classes[class_name]
-                FileStorage.__objects[key] = class_name(**val)
+                self.__objects[key] = class_name(**val)
         except FileNotFoundError:
             pass
 
@@ -66,12 +66,12 @@ class FileStorage:
         '''
         Deletes an object from __objects if it is inside of __objects
         '''
-        copy_storage = dict(FileStorage.__objects)
+        copy_storage = dict(self.__objects)
         desired_key = obj
         for key, val in copy_storage.items():
             if val == desired_key:
                 del(obj)
-                del FileStorage.__objects[key]
+                del self.__objects[key]
                 self.save()
 
     def close(self):
@@ -79,3 +79,37 @@ class FileStorage:
         Method calls reload method to deserialize JSON file to objects
         '''
         self.reload()
+
+    def get(self, cls, id):
+        '''
+        Method that retrieves an object based off the class (cls) passed
+        and the id (id) passed
+        Attributes:
+            cls: string representing the class name
+            id: string representing the object ID
+        '''
+        cls_dict = self.all(cls)
+
+        if len(cls_dict) == 0:
+            return None
+        key = cls + '.' + id
+        if key in cls_dict:
+            return cls_dict[key]
+        else:
+            return None
+
+    def count(self, cls=None):
+        '''
+        Method that counts how many objects of the type cls being passed.
+        Attributes:
+            cls: string representing the class name (optional)
+        '''
+        cls_dict = {}
+        all_dict = {}
+
+        if cls is None:
+            all_dict = self.all()
+            return len(all_dict)
+        else:
+            cls_dict = self.all(cls)
+            return len(cls_dict)
