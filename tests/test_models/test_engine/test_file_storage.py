@@ -152,3 +152,34 @@ class testFileStorage(unittest.TestCase):
             json_dict = json.load(fd)
         for key, value in json_dict.items():
             self.assertTrue(value['id'] != my_id)
+
+    def test_get_file_storage(self):
+        '''
+            Tests the get method of file storage
+        '''
+        state = State(name="Cali")
+        state_id = state.id
+        self.storage.new(state)
+        state_obj = self.storage.get("State", state_id)
+        self.assertEqual(state_obj, state)
+
+    def test_count_file_storage_no_class(self):
+        '''
+        Tests the count method in db storage when no class is passed
+        '''
+        first_count = self.storage.count()
+        state = State(name="Colorado")
+        state.save()
+        second_count = self.storage.count()
+        self.assertTrue(first_count + 1, second_count)
+
+
+    def test_count_file_storage_class(self):
+        '''
+        Tests the count method in db storage when passing a class
+        '''
+        first_count = self.storage.count("State")
+        state = State(name="Colorado")
+        state.save()
+        second_count = self.storage.count("State")
+        self.assertTrue(first_count + 1, second_count)

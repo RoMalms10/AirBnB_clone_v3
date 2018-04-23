@@ -97,3 +97,41 @@ class DBStorage():
         close method on the class Session
         '''
         self.__session.close()
+
+    def get(self, cls, id):
+        '''
+        Method that retrieves an object based off the class (cls) passed
+        and the id (id) passed
+        Attributes:
+            cls: string representing the class name
+            id: string representing the object ID
+        Returns:
+            the object if found, or nothing
+        '''
+        cls_dict = self.all(cls)
+
+        if len(cls_dict) == 0:
+            return None
+        key = cls + '.' + id
+        if key in cls_dict:
+            return cls_dict[key]
+        else:
+            return None
+
+    def count(self, cls=None):
+        '''
+        Method that counts how many objects of the type cls being passed.
+        Attributes:
+            cls: string representing the class name (optional)
+        Returns:
+            The count of objects
+        '''
+        cls_dict = {}
+        all_dict = {}
+
+        if cls is None:
+            all_dict = self.all()
+            return len(all_dict)
+        else:
+            cls_dict = self.all(cls)
+            return len(cls_dict) 
