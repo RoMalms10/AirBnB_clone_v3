@@ -163,9 +163,18 @@ class testFileStorage(unittest.TestCase):
         state_obj = self.storage.get("State", state_id)
         self.assertEqual(state_obj, state)
 
+    def test_count_db_storage_works(self):
+        '''
+        Tests if the count method in file storage is working
+        '''
+        all_dict = self.storage.all()
+        all_count = len(all_dict)
+        count = self.storage.count()
+        self.assertEqual(all_count, count)
+
     def test_count_file_storage_no_class(self):
         '''
-        Tests the count method in db storage when no class is passed
+        Tests the count method in file storage when no class is passed
         '''
         first_count = self.storage.count()
         state = State(name="Colorado")
@@ -176,7 +185,7 @@ class testFileStorage(unittest.TestCase):
 
     def test_count_file_storage_class(self):
         '''
-        Tests the count method in db storage when passing a class
+        Tests the count method in file storage when passing a class
         '''
         first_count = self.storage.count("State")
         state = State(name="Colorado")
