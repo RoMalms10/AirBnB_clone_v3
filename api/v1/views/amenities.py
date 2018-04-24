@@ -41,7 +41,7 @@ def post_make_new_amenity():
 
 
 @app_views.route('/amenities/<amenity_id>', strict_slashes=False, methods=['GET'])
-def get_specific_state(amenity_id):
+def get_specific_amenity(amenity_id):
     '''
     When a GET request is made with an extra parameter, this method will
     look for the Amenity ID specified and return the JSON format of that
@@ -57,7 +57,7 @@ def get_specific_state(amenity_id):
 
 @app_views.route('/amenities/<amenity_id>',
                  strict_slashes=False, methods=['DELETE'])
-def delete_spcific_state(state_id):
+def delete_spcific_amenity(amenity_id):
     '''
     When a DELETE request is made with the <amenity_id> parameter, this method
     will look for the amenity object that matches and remove it from the database
@@ -72,7 +72,7 @@ def delete_spcific_state(state_id):
 
 
 @app_views.route('/amenities/<amenity_id>', strict_slashes=False, methods=['PUT'])
-def put_specific_state(state_id):
+def put_specific_amenity(amenity_id):
     '''
     When a PUT request is made, the object that corresponds to the correct
     Amenity ID is updated with the information passed in the request
