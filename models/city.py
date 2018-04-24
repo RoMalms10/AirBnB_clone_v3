@@ -21,3 +21,18 @@ class City(BaseModel, Base):
     else:
         name = ""
         state_id = ""
+
+        @property
+        def places(self):
+            '''
+                Getter for places when using FileStorage system
+                Returns:
+                    A list of Place objects associated with the current City
+            '''
+            cls_dict = models.storage.all(models.classes["Place"])
+            places_in_city = []
+            current_city = self.id
+            for key, value in cls_dict.items():
+                if value.city_id == current_city:
+                    places_in_city.append(value)
+            return places_in_city
