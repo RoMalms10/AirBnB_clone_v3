@@ -6,14 +6,14 @@ from api.v1.views import app_views
 from flask import jsonify
 from models import storage, classes
 
-@app_views.route('/status')
+@app_views.route('/status', strict_slashes=False, methods=['GET'])
 def status():
     '''
     Returns a STATUS OK when pinged
     '''
     return jsonify({'status': 'OK'})
 
-@app_views.route('/stats')
+@app_views.route('/stats', strict_slashes=False, methods=['GET'])
 def count_objects():
     '''
     Returns the jsonified version of each counted object
