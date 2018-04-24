@@ -9,6 +9,7 @@ from flask import Flask, make_response, jsonify
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
+app.url_map.strict_slashes = False
 
 
 @app.errorhandler(404)
