@@ -34,7 +34,6 @@ def post_make_new_city(state_id):
     Returns:
         Raises 404 if state_id not found
         Raises a 400 error if no valid JSON or if there is no name
-        404 if state_id not associated with valid State object
         The new City with code 201
     '''
     post_dict = request.get_json()
