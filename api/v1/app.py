@@ -18,6 +18,7 @@ def not_found(error):
     '''
     return make_response(jsonify({'error': 'Not found'}), 404)
 
+
 @app.teardown_appcontext
 def close_storage(exception):
     '''
