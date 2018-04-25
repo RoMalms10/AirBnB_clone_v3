@@ -21,10 +21,10 @@ def count_objects():
     Returns the jsonified version of each counted object
     '''
     return jsonify({
-        "amenities": storage.count(classes["Amenity"]),
-        "citites": storage.count(classes["City"]),
-        "places": storage.count(classes["Place"]),
-        "reviews": storage.count(classes["Review"]),
-        "states": storage.count(classes["State"]),
-        "users": storage.count(classes["User"])
+        "amenities": storage.count("Amenity"),
+        "citites": storage.count("City"),
+        "places": storage.count("Place"),
+        "reviews": storage.count("Review"),
+        "states": storage.count("State"),
+        "users": storage.count("User")
     })
