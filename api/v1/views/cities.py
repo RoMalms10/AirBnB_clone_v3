@@ -7,7 +7,8 @@ from flask import jsonify, abort, request, make_response
 from models import storage, classes
 
 
-@app_views.route('/states/<state_id>/cities', strict_slashes=False, methods=['GET'])
+@app_views.route('/states/<state_id>/cities',
+                 strict_slashes=False, methods=['GET'])
 def get_all_cities_by_state_id(state_id):
     '''
     Retrieves all City objects associated with state_id
@@ -26,7 +27,8 @@ def get_all_cities_by_state_id(state_id):
         return jsonify(cls_list)
 
 
-@app_views.route('/states/<state_id>/cities', strict_slashes=False, methods=['POST'])
+@app_views.route('/states/<state_id>/cities',
+                 strict_slashes=False, methods=['POST'])
 def post_make_new_city(state_id):
     '''
     When a POST request is made, a City object is created with the values

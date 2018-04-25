@@ -40,7 +40,8 @@ def post_make_new_amenity():
     return jsonify(new_amenity.to_dict()), 201
 
 
-@app_views.route('/amenities/<amenity_id>', strict_slashes=False, methods=['GET'])
+@app_views.route('/amenities/<amenity_id>',
+                 strict_slashes=False, methods=['GET'])
 def get_specific_amenity(amenity_id):
     '''
     When a GET request is made with an extra parameter, this method will
@@ -60,7 +61,8 @@ def get_specific_amenity(amenity_id):
 def delete_spcific_amenity(amenity_id):
     '''
     When a DELETE request is made with the <amenity_id> parameter, this method
-    will look for the amenity object that matches and remove it from the database
+    will look for the amenity object that matches and remove it from the
+    database
     Otherwise, raises a 404
     '''
     cls_obj = storage.get("Amenity", amenity_id)
@@ -71,7 +73,8 @@ def delete_spcific_amenity(amenity_id):
         return jsonify({}), 200
 
 
-@app_views.route('/amenities/<amenity_id>', strict_slashes=False, methods=['PUT'])
+@app_views.route('/amenities/<amenity_id>',
+                 strict_slashes=False, methods=['PUT'])
 def put_specific_amenity(amenity_id):
     '''
     When a PUT request is made, the object that corresponds to the correct
