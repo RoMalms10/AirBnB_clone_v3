@@ -7,7 +7,8 @@ from flask import jsonify, abort, request, make_response
 from models import storage, classes
 
 
-@app_views.route('/places/<place_id>/reviews', strict_slashes=False, methods=['GET'])
+@app_views.route('/places/<place_id>/reviews',
+                 strict_slashes=False, methods=['GET'])
 def get_all_reviews_by_place_id(place_id):
     '''
     Retrieves all review objects associated with place_id
@@ -26,7 +27,8 @@ def get_all_reviews_by_place_id(place_id):
         return jsonify(cls_list)
 
 
-@app_views.route('/places/<place_id>/reviews', strict_slashes=False, methods=['POST'])
+@app_views.route('/places/<place_id>/reviews',
+                 strict_slashes=False, methods=['POST'])
 def post_make_new_review(place_id):
     '''
     When a POST request is made, a review object is created with the values
@@ -57,7 +59,8 @@ def post_make_new_review(place_id):
     return jsonify(new_review.to_dict()), 201
 
 
-@app_views.route('/reviews/<review_id>', strict_slashes=False, methods=['GET'])
+@app_views.route('/reviews/<review_id>',
+                 strict_slashes=False, methods=['GET'])
 def get_specific_review(review_id):
     '''
     When a GET request is made with an extra parameter, this method will
@@ -77,7 +80,8 @@ def get_specific_review(review_id):
 def delete_spcific_review(review_id):
     '''
     When a DELETE request is made with the <review_id> parameter, this method
-    will look for the review object that matches and remove it from the database
+    will look for the review object that matches and remove it from the
+    database
     Otherwise, raises a 404
     '''
     cls_obj = storage.get("Review", review_id)
@@ -88,7 +92,8 @@ def delete_spcific_review(review_id):
         return jsonify({}), 200
 
 
-@app_views.route('/reviews/<review_id>', strict_slashes=False, methods=['PUT'])
+@app_views.route('/reviews/<review_id>',
+                 strict_slashes=False, methods=['PUT'])
 def put_specific_review(review_id):
     '''
     When a PUT request is made, the object that corresponds to the correct

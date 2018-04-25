@@ -8,7 +8,8 @@ from flask import jsonify, abort, request, make_response
 from models import storage, classes
 
 
-@app_views.route('/cities/<city_id>/places', strict_slashes=False, methods=['GET'])
+@app_views.route('/cities/<city_id>/places',
+                 strict_slashes=False, methods=['GET'])
 def get_all_places_by_city_id(city_id):
     '''
     Retrieves all Places objects associated with city_id
@@ -27,7 +28,8 @@ def get_all_places_by_city_id(city_id):
         return jsonify(cls_list)
 
 
-@app_views.route('/cities/<city_id>/places', strict_slashes=False, methods=['POST'])
+@app_views.route('/cities/<city_id>/places',
+                 strict_slashes=False, methods=['POST'])
 def post_make_new_place(city_id):
     '''
     When a POST request is made, a Places object is created with the values

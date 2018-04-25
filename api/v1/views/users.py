@@ -60,7 +60,8 @@ def get_specific_user(user_id):
 def delete_spcific_user(user_id):
     '''
     When a DELETE request is made with the <user_id> parameter, this method
-    will look for the amenity object that matches and remove it from the database
+    will look for the amenity object that matches and remove it from the
+    database
     Otherwise, raises a 404
     '''
     cls_obj = storage.get("User", user_id)
