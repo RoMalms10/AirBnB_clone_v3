@@ -33,8 +33,10 @@ def post_make_new_user():
     post_dict = request.get_json()
     if not post_dict:
         return make_response(jsonify({"error": "Not a JSON"}), 400)
-    if "name" not in post_dict:
-        return make_response(jsonify({"error": "Missing name"}), 400)
+    if "email" not in post_dict:
+        return make_response(jsonify({"error": "Missing email"}), 400)
+    if "password" not in post_dict:
+        return make_response(jsonify({"error": "Missing password"}), 400)
     new_user = classes["User"](**post_dict)
     new_user.save()
     return jsonify(new_user.to_dict()), 201
