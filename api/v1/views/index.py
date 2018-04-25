@@ -20,8 +20,11 @@ def count_objects():
     '''
     Returns the jsonified version of each counted object
     '''
-    count_dict = {}
-    for key, value in classes.items():
-        if key != "BaseModel":
-            count_dict[key.lower()] = storage.count(key)
-    return jsonify(count_dict)
+    return jsonify({
+        "amenities": storage.count("Amenity"),
+        "citites": storage.count("City"),
+        "places": storage.count("Place"),
+        "reviews": storage.count("Review"),
+        "states": storage.count("State"),
+        "users": storage.count("User")
+    })
