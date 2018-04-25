@@ -22,7 +22,7 @@ def count_objects():
     '''
     return jsonify({
         "amenities": storage.count("Amenity"),
-        "citites": storage.count("City"),
+        "cities": storage.count("City"),
         "places": storage.count("Place"),
         "reviews": storage.count("Review"),
         "states": storage.count("State"),
