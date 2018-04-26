@@ -58,4 +58,4 @@ $ curl -X GET http://0.0.0.0:5000/api/v1/status
 | `/places/<place_id>` | `GET`, `DELETE`, `PUT` | Based on the `<place_id>` passed:<br> `GET`: Retrieves the `Place` object.<br> `DELETE`: Delete that `Place` object.<br> `PUT`: Update that `Place` object. |
 | `/places/<place_id>/reviews` | `GET`, `POST` | Based on the `<place_id>` passed:<br> `GET`: Retrieves the `Review` objects linked to that `Place`.<br> `POST`: Create a `Review` object linked to that `Place`. |
 | `/reviews/<review_id>` | `GET`, `DELETE`, `PUT` | Based on the `<review_id>` passed:<br> `GET`: Retrieves the `Review` object.<br> `DELETE`: Delete that `Review` object.<br> `PUT`: Update that `Review` object. |
-| `/<everything_else>` | Displays the 404 error message |
+| `/<everything_else>`| ALL | Displays the 404 error message |
