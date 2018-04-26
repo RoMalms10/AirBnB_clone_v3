@@ -17,8 +17,8 @@ Built in `Python3` and uses `MySQL` and `JSON`.
 | `review.py` | The `Review` class. |
 | `state.py` | The `State` class. |
 | `user.py` | The `User` class. |
-| `/engine/db_storage.py` | The `DB_Storage` class for storing information into `MySQL`. |
-| `/engine/file_storage.py` | The `FileStorage` class for storing information into a file in `JSON` format. |
+| `engine/db_storage.py` | The `DB_Storage` class for storing information into `MySQL`. |
+| `engine/file_storage.py` | The `FileStorage` class for storing information into a file in `JSON` format. |
 
 ## AUTHORS
 Steven Garcia <steven.garcia@holbertonschool.com><br>
