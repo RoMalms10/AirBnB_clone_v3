@@ -45,7 +45,7 @@ $ curl -X GET http://0.0.0.0:5000/api/v1/status
 ## Currently Supported Endpoints
 
 
-| Endpoint | Types of Requests Available | What it does |
+| Endpoint | Types of Requests Available | Purpose |
 | ------ | ------------ | -------------------------- |
 | `/status` | `GET` | Returns the status of the API. |
 | `/stats` | `GET` | Retrieves the number of each objects type in storage. |
