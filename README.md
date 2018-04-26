@@ -71,3 +71,10 @@ will show you the specific privileges the user has on the different databases.
 ## Bugs
 
 + No known bugs at this time.
+
+## Authors
+Steven Garcia <steven.garcia@holbertonschool.com><br>
+Binita Rai <binita.rai@holbertonschool.com><br>
+Lindsey Hemenez <lindsey.hemenez@holbertonschool.com><br>
+Robert Malmstein <robert.malmstein@holbertonschool.com><br>
+Thomas Dumont <thomas.dumont@holbertonschool.com>
