@@ -1,1 +1,53 @@
-# Creating the API endpoints for our HBNB project (An AirBnB clone)
+# API endpoints
+
+## Purpose
+Create the API endpoints for the AirBNB clone.
+
+## Environment
+The project was tested and compiled on Ubuntu 14.04 (trusty64) via Vagrant run through VirtualBox.
+
+## API Endpoint path
+The URL prefix for each endpoint is `/api/v1/`. All routes used are appended to this prefix.
+
+## How To Start The App
+From the root of the repository, use these commands to start the app:
+- To use Database Storage:
+```
+HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db HBNB_API_HOST=0.0.0.0 HBNB_API_PORT=5000 python3 -m api.v1.app
+```
+
+- To use File Storage:
+```
+HBNB_API_HOST=0.0.0.0 HBNB_API_PORT=5000 python3 -m api.v1.app
+```
+
+## How to test endpoints
+Once the app is started, you can test each webpage by using the `curl` command. Currently, in version 1, only `localhost` can access the webpages on `port 5000`
+
+## Example
+In one terminal:
+```
+$ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db HBNB_API_HOST=0.0.0.0 HBNB_API_PORT=5000 python3 -m api.v1.app
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+...
+```
+In another terminal:
+```
+$ curl -X GET http://0.0.0.0:5000/api/v1/status
+{
+  "status": "OK"
+}
+```
+
+## Currently Supported Endpoints
+
+
+| Endpoint | Types of Requests Availale | What it does |
+| ------ | ------------ | -------------------------- |
+| `/status` | `GET` | Returns the status of the API. |
+| `/stats` | `GET` | Retrieves the number of each objects type in storage. |
+| `/states` | `GET`, `POST` | `GET`: Retrieves the list of all `State` objects. <br> `POST`: creates a new `State` object. |
+|`/states/<state_id>` | `DELETE`, `PUT`, `GET` | Based on the `<state_id>` passed:<br>`DELETE`: Deletes a `State` object.<br> `PUT`: Updates a `State` object.<br> `GET`: Retrieves a `State` object. |
+| `/states/<state_id>/cities` | `GET`, `POST` | Based on the `<state_id>` passed:<br> `GET`: Retrieves the `City` objects linked to that `State`.<br> `POST`: Create a `City` object linked to that `State`.
+| `/cities/<city_id>` | `GET`, `DELETE`, `PUT` | Based on the `<city_id>` passed:<br> `GET`: Retrieves the `City` object.<br> `DELETE`: Delete that `City` object.<br> `PUT`: Update that `City` object.
+| Anything else | Displays the 404 error message |
