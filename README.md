@@ -1,10 +1,16 @@
-# Synopsis
+# AirBnb Clone - HBNB
 
-The Airbnb clone project for which we are creating a copy of the [Airbnb](https://www.airbnb.com/).
+## Purpose
+Creating a copy of [Airbnb](https://www.airbnb.com/).
 Only some features will be implemented and will be listed below once completed.
 
 
 ## Features
+- Command Interpreter.
+- 2 Types of Storage: Database (`MySQL`) and File (`JSON`).
+- Static Landing Page in `web_static`.
+- Dynamic Loading Landing Page in `web_flask`.
+- API Endpoints in `api`.
 
 ### Command Interpreter
 
@@ -27,7 +33,7 @@ or to use the non-interactive mode run:
 
 ```echo "your-command-goes-here" | ./console.py ```
 
-#### Commands
+#### Console Commands
 
 Commands | Description | Usage
 -------- | ----------- |-------- |
