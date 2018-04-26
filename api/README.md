@@ -25,7 +25,7 @@ HBNB_API_HOST=0.0.0.0 HBNB_API_PORT=5000 python3 -m api.v1.app
 ```
 
 ## How to Test Endpoints
-Once the app is started, you can test each webpage by using the `curl` command. Currently, in version 1, only `localhost` can access the webpages on `port 5000`
+Once the app is started, you can test each webpage by using the `curl` command. Currently, in version 1, only `localhost` can access the webpages on `port 5000`.
 
 ## Example
 In one terminal:
