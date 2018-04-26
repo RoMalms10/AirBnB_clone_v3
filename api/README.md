@@ -9,7 +9,7 @@ The project was tested and compiled on `Ubuntu 14.04 (trusty64)` via Vagrant run
 ## Languages
 API was built with `Python3` and `Flask`.
 
-## API Endpoint path
+## API Endpoint Path
 The URL prefix for each endpoint is `/api/v1/`. All endpoints used are appended to this prefix.
 
 ## How To Start The App
@@ -24,7 +24,7 @@ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost H
 HBNB_API_HOST=0.0.0.0 HBNB_API_PORT=5000 python3 -m api.v1.app
 ```
 
-## How to test endpoints
+## How to Test Endpoints
 Once the app is started, you can test each webpage by using the `curl` command. Currently, in version 1, only `localhost` can access the webpages on `port 5000`
 
 ## Example
