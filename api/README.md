@@ -1,4 +1,4 @@
-# API endpoints
+# API Endpoints
 
 ## Purpose
 Create the API endpoints for the AirBNB clone.
@@ -7,7 +7,7 @@ Create the API endpoints for the AirBNB clone.
 The project was tested and compiled on `Ubuntu 14.04 (trusty64)` via Vagrant run through VirtualBox.
 
 ## Languages
-API was built with`Python3` and `Flask`.
+API was built with `Python3` and `Flask`.
 
 ## API Endpoint path
 The URL prefix for each endpoint is `/api/v1/`. All endpoints used are appended to this prefix.
