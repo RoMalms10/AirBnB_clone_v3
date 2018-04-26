@@ -7,7 +7,7 @@ Create the API endpoints for the AirBNB clone.
 The project was tested and compiled on Ubuntu 14.04 (trusty64) via Vagrant run through VirtualBox.
 
 ## API Endpoint path
-The URL prefix for each endpoint is `/api/v1/`. All routes used are appended to this prefix.
+The URL prefix for each endpoint is `/api/v1/`. All endpoints used are appended to this prefix.
 
 ## How To Start The App
 From the root of the repository, use these commands to start the app:
@@ -48,6 +48,14 @@ $ curl -X GET http://0.0.0.0:5000/api/v1/status
 | `/stats` | `GET` | Retrieves the number of each objects type in storage. |
 | `/states` | `GET`, `POST` | `GET`: Retrieves the list of all `State` objects. <br> `POST`: creates a new `State` object. |
 |`/states/<state_id>` | `DELETE`, `PUT`, `GET` | Based on the `<state_id>` passed:<br>`DELETE`: Deletes a `State` object.<br> `PUT`: Updates a `State` object.<br> `GET`: Retrieves a `State` object. |
-| `/states/<state_id>/cities` | `GET`, `POST` | Based on the `<state_id>` passed:<br> `GET`: Retrieves the `City` objects linked to that `State`.<br> `POST`: Create a `City` object linked to that `State`.
-| `/cities/<city_id>` | `GET`, `DELETE`, `PUT` | Based on the `<city_id>` passed:<br> `GET`: Retrieves the `City` object.<br> `DELETE`: Delete that `City` object.<br> `PUT`: Update that `City` object.
-| Anything else | Displays the 404 error message |
+| `/states/<state_id>/cities` | `GET`, `POST` | Based on the `<state_id>` passed:<br> `GET`: Retrieves the `City` objects linked to that `State`.<br> `POST`: Create a `City` object linked to that `State`. |
+| `/cities/<city_id>` | `GET`, `DELETE`, `PUT` | Based on the `<city_id>` passed:<br> `GET`: Retrieves the `City` object.<br> `DELETE`: Delete that `City` object.<br> `PUT`: Update that `City` object. |
+| `/amenities` | `GET`, `POST` | `GET`: Retrieves the list of all `Amenity` objects. <br> `POST`: creates a new `Amenity` object. |
+|`/amenities/<amenity_id>` | `DELETE`, `PUT`, `GET` | Based on the `<amenity_id>` passed:<br>`DELETE`: Deletes an `Amenity` object.<br> `PUT`: Updates an `Amenity` object.<br> `GET`: Retrieves an `Amenity` object. |
+| `/users` | `GET`, `POST` | `GET`: Retrieves the list of all `User` objects. <br> `POST`: creates a new `User` object. |
+|`/users/<user_id>` | `DELETE`, `PUT`, `GET` | Based on the `<user_id>` passed:<br>`DELETE`: Deletes a `User` object.<br> `PUT`: Updates a `User` object.<br> `GET`: Retrieves a `User` object. |
+| `/cities/<city_id>/places` | `GET`, `POST` | Based on the `<city_id>` passed:<br> `GET`: Retrieves the `Place` objects linked to that `City`.<br> `POST`: Create a `Place` object linked to that `City`. |
+| `/places/<place_id>` | `GET`, `DELETE`, `PUT` | Based on the `<place_id>` passed:<br> `GET`: Retrieves the `Place` object.<br> `DELETE`: Delete that `Place` object.<br> `PUT`: Update that `Place` object. |
+| `/places/<place_id>/reviews` | `GET`, `POST` | Based on the `<place_id>` passed:<br> `GET`: Retrieves the `Review` objects linked to that `Place`.<br> `POST`: Create a `Review` object linked to that `Place`. |
+| `/reviews/<review_id>` | `GET`, `DELETE`, `PUT` | Based on the `<review_id>` passed:<br> `GET`: Retrieves the `Review` object.<br> `DELETE`: Delete that `Review` object.<br> `PUT`: Update that `Review` object. |
+| `/<everything_else>` | Displays the 404 error message |
