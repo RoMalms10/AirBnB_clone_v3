@@ -25,7 +25,7 @@ HBNB_API_HOST=0.0.0.0 HBNB_API_PORT=5000 python3 -m api.v1.app
 ```
 
 ## How to Test Endpoints
-Once the app is started, you can test each webpage by using the `curl` command. Currently, in version 1, only `localhost` can access the webpages on `port 5000`.
+Currently, in version 1, the app will run on `localhost (0.0.0.0)` and on `port 5000`. This means that once the app is started, you can test each webpage by using the `curl` command.
 
 ## Example
 In one terminal:
@@ -45,7 +45,7 @@ $ curl -X GET http://0.0.0.0:5000/api/v1/status
 ## Currently Supported Endpoints
 
 
-| Endpoint | Types of Requests Available | What it does |
+| Endpoint | Types of Requests Available | Purpose |
 | ------ | ------------ | -------------------------- |
 | `/status` | `GET` | Returns the status of the API. |
 | `/stats` | `GET` | Retrieves the number of each objects type in storage. |
@@ -62,3 +62,10 @@ $ curl -X GET http://0.0.0.0:5000/api/v1/status
 | `/places/<place_id>/reviews` | `GET`, `POST` | Based on the `<place_id>` passed:<br> `GET`: Retrieves the `Review` objects linked to that `Place`.<br> `POST`: Create a `Review` object linked to that `Place`. |
 | `/reviews/<review_id>` | `GET`, `DELETE`, `PUT` | Based on the `<review_id>` passed:<br> `GET`: Retrieves the `Review` object.<br> `DELETE`: Delete that `Review` object.<br> `PUT`: Update that `Review` object. |
 | `/<everything_else>`| ALL | Displays the 404 error message |
+
+## Authors
+Steven Garcia <steven.garcia@holbertonschool.com><br>
+Binita Rai <binita.rai@holbertonschool.com><br>
+Lindsey Hemenez <lindsey.hemenez@holbertonschool.com><br>
+Robert Malmstein <robert.malmstein@holbertonschool.com><br>
+Thomas Dumont <thomas.dumont@holbertonschool.com>
