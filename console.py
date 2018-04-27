@@ -40,6 +40,7 @@ class HBNBCommand(cmd.Cmd):
         Create a new instance of a class passed in the command line.
         The first parameter MUST be a class object. More paramaters can
             be passed, but need to be passed as <key>="<value>" pairs.
+        Prints out the id of the new object.
         Usage:
             create <class> <param2> ...
         Example 1:
@@ -228,7 +229,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_count(self, args):
         '''
-        Counts the number of instances of the class passed on the command line.
+        Prints the number of instances of the class passed on the command line
+            that are currently in storage.
         Usage:
             count <class>
         Example:

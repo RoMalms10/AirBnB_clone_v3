@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-    Declaration for database storage
+    Implementation of the DBStorage class.
 '''
 import models
 from sqlalchemy.ext.declarative import declarative_base
@@ -18,14 +18,28 @@ import os
 
 class DBStorage():
     '''
-    Database storage class
+    DBStorage Class.
+    A type of storage method that uses MySQL to store data.
+    When the environment variable HBNB_TYPE_STORAGE is equal to db, this
+        storage method will be used.
+     Methods:
+        __init__
+        all
+        new
+        save
+        delete
+        reload
+        close
+        get
+        count
     '''
     __engine = None
     __session = None
 
     def __init__(self):
         '''
-        Creates engine connection
+        Scans the environment variables to connect to a database.
+        Then, creates a connection to the engine.
         '''
         username = os.getenv('HBNB_MYSQL_USER', default=None)
         password = os.getenv('HBNB_MYSQL_PWD', default=None)
@@ -39,8 +53,16 @@ class DBStorage():
 
     def all(self, cls=None):
         '''
-        Queries current database session based on class.
-        Returns a dictionary representation of the query.
+        Queries current database session.
+        This query can take in a class or not. If no class is passed, returns
+            all objects in the database. If a class is passed, returns
+            all objects of that type.
+        Arguments:
+            cls: Class passed, defaults to None.
+        Returns:
+            Dictionary representation of the query in the form of:
+                key: str(object).id
+                value: the actual object with that id
         '''
         result = []
         new_dict = {}
@@ -63,19 +85,25 @@ class DBStorage():
 
     def new(self, obj):
         '''
-        Adds the object to the current database session
+        Adds the object to the current database session.
+        Arguments:
+            obj: object passed
         '''
         self.__session.add(obj)
 
     def save(self):
         '''
-        Commits all changes of the current database session
+        Saves all changes of the current session by committing the changes
+            to the database.
         '''
         self.__session.commit()
 
     def delete(self, obj=None):
         '''
-        Deletes from the current database session obj if not None
+        Deletes the object from storage by deleting it in the database and
+            saving.
+        Arguments:
+            obj: object passed, defaults to None
         '''
         if obj is not None:
             self.__session.delete(obj)
@@ -93,8 +121,7 @@ class DBStorage():
 
     def close(self):
         '''
-        Calls remove method on the private session attribute or
-        close method on the class Session
+        Closes the current session with the database.
         '''
         self.__session.close()
 
@@ -102,9 +129,12 @@ class DBStorage():
         '''
         Method that retrieves an object based off the class (cls) passed
         and the id (id) passed
-        Attributes:
+        Arguments:
             cls: string representing the class name
             id: string representing the object ID
+        Attributes:
+            cls_dict: the dictionary received from the all method when
+                passing a class.
         Returns:
             the object if found, or nothing
         '''
@@ -121,8 +151,13 @@ class DBStorage():
     def count(self, cls=None):
         '''
         Method that counts how many objects of the type cls being passed.
-        Attributes:
+        Arguments:
             cls: string representing the class name (optional)
+        Attributes:
+            all_dict: the dictionary received from the all method when no
+                class is passed.
+            cls_dict: the dictionary received from the all method when
+                pasing a class.
         Returns:
             The count of objects
         '''

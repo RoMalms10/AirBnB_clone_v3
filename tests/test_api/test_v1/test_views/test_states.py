@@ -17,7 +17,7 @@ class Test_States(unittest.TestCase):
 
     def setUp(self):
         '''
-            Starts up flask for testing and make a new state class
+            Starts up flask for testing
         '''
         self.test_app = app.test_client()
 
@@ -54,7 +54,7 @@ class Test_States(unittest.TestCase):
         response = self.test_app.get('/api/v1/states/{}'.format(state1.id))
         check = json.loads(response.data.decode(defenc()))
         check_state = check['id']
-        self.assertEqual(state1.id, check_state, msg=check)
+        self.assertEqual(state1.id, check_state)
 
     def test_states_invalid_id(self):
         '''
@@ -71,7 +71,7 @@ class Test_States(unittest.TestCase):
         state1.save()
         response = self.test_app.delete('/api/v1/states/{}'.format(state1.id))
         check = json.loads(response.data.decode(defenc()))
-        self.assertEqual(storage.get("State", state1.id, ), None)
+        self.assertEqual(storage.get("State", state1.id), None)
 
     def test_delete_invalid_ID(self):
         '''
