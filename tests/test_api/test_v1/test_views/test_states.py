@@ -18,7 +18,7 @@ class Test_States(unittest.TestCase):
 
     def setUp(self):
         '''
-            Starts up flask for testing and make a new state class
+            Starts up flask for testing
         '''
         self.test_app = app.test_client()
 
