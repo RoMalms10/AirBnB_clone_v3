@@ -27,29 +27,3 @@ class Test_app_py(unittest.TestCase):
         response = self.test_app.get('/api/v1/views/error')
         self.assertEqual(json.loads(
             response.get_data().decode(defenc())), {'error': 'Not found'})
-
-    def test_app_status(self):
-        """
-        Tests /status endpoint
-        """
-        response = self.test_app.get('/api/v1/status')
-        self.assertEqual(json.loads(
-            response.get_data().decode(defenc())),
-            {'status': 'OK'}
-        )
-
-    def test_app_status(self):
-        """
-        Tests /stats endpoint
-        """
-        response = self.test_app.get('/api/v1/stats')
-        self.assertEqual(json.loads(
-            response.get_data().decode(defenc())),
-            {'reviews': 0,
-             'places': 0,
-             'amenities': 0,
-             'states': 0,
-             'users': 0,
-             'reviews': 0,
-             'cities': 0}
-        )
