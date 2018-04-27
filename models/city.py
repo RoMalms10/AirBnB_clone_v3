@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-    Define the class City.
+    Implementation of the City class.
 '''
 import os
 from models.base_model import BaseModel, Base
@@ -10,7 +10,25 @@ from sqlalchemy.orm import relationship
 
 class City(BaseModel, Base):
     '''
-        Define the class City that inherits from BaseModel.
+    City Class.
+    Inherits from BaseModel for methods.
+    Inherits from Base for use with DB storage when needed.
+    When the environment variable HBNB_TYPE_STORAGE is equal to db, the
+        database method of storage will be used. The name of the table
+        created in MySQL will be called cities.
+    For Database Storage:
+        cities Table columns:
+            name: String, and can't be NULL
+            state_id: String, can't be NULL and links to
+                another table called states based off it's id.
+        places relationship:
+            Linked to the Place class.
+    For File Storage:
+        Attributes:
+            name: String
+            state_id: String
+        Methods:
+            places: Getter for places linked to the current City.
     '''
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         __tablename__ = "cities"
