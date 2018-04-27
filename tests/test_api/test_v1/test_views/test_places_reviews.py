@@ -109,7 +109,8 @@ class Test_Reviews(unittest.TestCase):
         review1 = classes['Review'](text="Nice place",
                                     place_id=place1.id, user_id=user1.id)
         review1.save()
-        response = self.test_app.delete('/api/v1/reviews/{}'.format(review1.id))
+        response = self.test_app.delete(
+                '/api/v1/reviews/{}'.format(review1.id))
         check = json.loads(response.data.decode(defenc()))
         self.assertEqual(storage.get("Review", review1.id), None)
         city1.delete()
