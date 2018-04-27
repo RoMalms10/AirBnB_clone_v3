@@ -7,6 +7,7 @@ import sys
 import json
 from models import storage
 from api.v1.app import app
+from sys import getdefaultencoding as defenc
 
 
 class Test_Places_reviews(unittest.TestCase):
