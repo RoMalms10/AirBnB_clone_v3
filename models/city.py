@@ -3,7 +3,7 @@
     Implementation of the City class.
 '''
 import os
-from models import storage, classes
+import models
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
@@ -52,7 +52,7 @@ class City(BaseModel, Base):
                 Returns:
                     A list of Place objects associated with the current City
             '''
-            cls_dict = storage.all(classes["Place"])
+            cls_dict = models.storage.all(models.classes["Place"])
             places_in_city = []
             current_city = self.id
             for key, value in cls_dict.items():
