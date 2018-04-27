@@ -64,10 +64,10 @@ class Place(BaseModel, Base):
             price_by_night: Integer, default of 0
             latitude: Float, default 0.0
             longitude: Float, default 0.0
-            amenity_ids: list of amenity objects associated with this Place.
+            amenity_ids: list of amenity ids associated with this Place.
         Methods:
-            amenities: Getter for amenities linked to the current Place.
-            amenities: Setter for adding amenities to the current Place.
+            amenities: Getter for amenity ids linked to the current Place.
+            amenities: Setter for adding amenity ids to the current Place.
     '''
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         __tablename__ = "places"
@@ -102,14 +102,17 @@ class Place(BaseModel, Base):
         @property
         def amenities(self):
             '''
-                 Returns a list containing the amenities ids
+            Returns:
+                List containing Amenity ids linked to this Place.
             '''
             return self.amenity_ids
 
         @amenities.setter
         def amenities(self, obj=None):
             '''
-                Sets the amenities ids to a list
+            Adds Amenity ids to the amenity_ids list.
+            Returns:
+                Nothing
             '''
             self.amenity_ids = obj.id
             if obj.__class__.__name__ != "Amenity":
