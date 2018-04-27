@@ -160,7 +160,7 @@ class Test_Users(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         user1.delete()
 
-    def test_users_update_id_created_at_updated_at(self):
+    def test_users_update_ignore_keys(self):
         '''
             Test to see if id, updated_at, and created_at keys are skipped
         '''
