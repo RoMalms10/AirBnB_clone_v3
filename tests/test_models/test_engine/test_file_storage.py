@@ -182,7 +182,6 @@ class testFileStorage(unittest.TestCase):
         second_count = self.storage.count()
         self.assertTrue(first_count + 1, second_count)
 
-
     def test_count_file_storage_class(self):
         '''
         Tests the count method in file storage when passing a class

@@ -87,9 +87,8 @@ class Test_Amenities(unittest.TestCase):
             Test create function
         '''
         data = json.dumps({"name": "Patio"})
-        response = self.test_app.post('/api/v1/amenities/',
-                                      data=data,
-                                      content_type='application/json')
+        response = self.test_app.post(
+            '/api/v1/amenities/', data=data, content_type='application/json')
         check = json.loads(response.data.decode(defenc()))
         amenity1 = storage.get("Amenity", check['id'])
         self.assertTrue(amenity1)
@@ -100,9 +99,8 @@ class Test_Amenities(unittest.TestCase):
             Test create function passing bad JSON data
         '''
         data = '{}'
-        response = self.test_app.post('/api/v1/amenities/',
-                                      data=data,
-                                      content_type='application/json')
+        response = self.test_app.post(
+            '/api/v1/amenities/', data=data, content_type='application/json')
         self.assertEqual(response.status_code, 400)
 
     def test_amenities_create_no_name(self):
@@ -110,9 +108,8 @@ class Test_Amenities(unittest.TestCase):
             Test create function without name key
         '''
         data = '{"nop": "nop"}'
-        response = self.test_app.post('/api/v1/amenities/',
-                                      data=data,
-                                      content_type='application/json')
+        response = self.test_app.post(
+            '/api/v1/amenities/', data=data, content_type='application/json')
         self.assertEqual(response.status_code, 400)
 
     def test_amenities_update(self):
@@ -122,9 +119,9 @@ class Test_Amenities(unittest.TestCase):
         amenity1 = classes['Amenity'](name="Shower")
         amenity1.save()
         data = json.dumps({"name": "Penguins"})
-        response = self.test_app.put('api/v1/amenities/{}'.format(amenity1.id),
-                                     data=data,
-                                     content_type='application/json')
+        response = self.test_app.put(
+            'api/v1/amenities/{}'.format(amenity1.id),
+            data=data, content_type='application/json')
         check = json.loads(response.data.decode(defenc()))
         self.assertEqual(check['name'], 'Penguins')
         amenity1.delete()
@@ -143,9 +140,9 @@ class Test_Amenities(unittest.TestCase):
         amenity1 = classes['Amenity'](name="Shower")
         amenity1.save()
         data = '{}'
-        response = self.test_app.put('api/v1/amenities/{}'.format(amenity1.id),
-                                     data=data,
-                                     content_type='application/json')
+        response = self.test_app.put(
+            'api/v1/amenities/{}'.format(amenity1.id),
+            data=data, content_type='application/json')
         check = json.loads(response.data.decode(defenc()))
         self.assertEqual(response.status_code, 400)
         amenity1.delete()
@@ -157,9 +154,9 @@ class Test_Amenities(unittest.TestCase):
         amenity1 = classes['Amenity'](name="Shower")
         amenity1.save()
         data = '{"created_at": "nop", "updated_at": "nop", "id": "nop"}'
-        response = self.test_app.put('api/v1/amenities/{}'.format(amenity1.id),
-                                     data=data,
-                                     content_type='application/json')
+        response = self.test_app.put(
+            'api/v1/amenities/{}'.format(amenity1.id),
+            data=data, content_type='application/json')
         check = json.loads(response.data.decode(defenc()))
         self.assertNotEqual(amenity1.id, "nop")
         amenity1.delete()
