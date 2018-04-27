@@ -95,7 +95,6 @@ class testDBStorage(unittest.TestCase):
         second_count = models.storage.count()
         self.assertTrue(first_count + 1, second_count)
 
-
     def test_count_db_storage_class(self):
         '''
         Tests the count method in db storage when passing a class
