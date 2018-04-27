@@ -10,7 +10,7 @@ from api.v1.app import app
 from sys import getdefaultencoding as defenc
 
 
-class test_amenities(unittest.TestCase):
+class Test_Amenities(unittest.TestCase):
     '''
         Unittest class for testing states api endpoint
     '''
