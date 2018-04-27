@@ -31,6 +31,10 @@ class Review(BaseModel, Base):
     '''
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         __tablename__ = "reviews"
+
+        __mapper_args__ = {
+            'confirm_deleted_rows': False}
+
         text = Column(String(1024), nullable=False)
         place_id = Column(String(60), ForeignKey("places.id"), nullable=False)
         user_id = Column(String(60),  ForeignKey("users.id"), nullable=False)
