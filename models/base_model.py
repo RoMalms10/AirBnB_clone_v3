@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-    This module defines the BaseModel class
+    Implementation of the BaseModel class.
 '''
 import os
 import uuid
@@ -19,7 +19,28 @@ else:
 
 class BaseModel:
     '''
-        Base class for other classes to be used for the duration.
+    BaseModel Class.
+    Base class for other classes to inherit from.
+    When the environment variable HBNB_TYPE_STORAGE is equal to db, the
+        database method of storage will be used. No table is created, but
+        columns used in other classes are created.
+    For Database Storage:
+        Table columns:
+            id: String, can't be NULL, and is a primary key.
+            created_at: DateTime, and can't be NULL.
+            updated_at: DateTime, and can't be NULL.
+    For File Storage:
+        Attributes:
+            id: String of UUID
+            created_at: DateTime
+            updated_at: DateTime
+        Methods:
+            __init__
+            __str__
+            __repr__
+            save
+            to_dict
+            delete
     '''
 
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
@@ -31,7 +52,7 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         '''
-            Initialize public instance attributes.
+        Initialize public instance attributes.
         '''
         if (len(kwargs) == 0):
             self.id = str(uuid.uuid4())
@@ -55,21 +76,22 @@ class BaseModel:
 
     def __str__(self):
         '''
-            Return string representation of BaseModel class
+        Return string representation of self object.
         '''
         return ("[{}] ({}) {}".format(self.__class__.__name__,
                                       self.id, self.__dict__))
 
     def __repr__(self):
         '''
-            Return string representation of BaseModel class
+        Return string representation of self object.
         '''
         return ("[{}] ({}) {}".format(self.__class__.__name__,
                                       self.id, self.__dict__))
 
     def save(self):
         '''
-            Update the updated_at attribute with new.
+        Saves the current object to storage.
+        updated_at also gets a new time based on when the save takes place.
         '''
         self.updated_at = datetime.now()
         models.storage.new(self)
@@ -77,7 +99,8 @@ class BaseModel:
 
     def to_dict(self):
         '''
-            Return dictionary representation of BaseModel class.
+        Return dictionary representation of self object to be used when
+            converting to JSON format.
         '''
         cp_dct = dict(self.__dict__)
         try:
@@ -92,7 +115,7 @@ class BaseModel:
 
     def delete(self):
         '''
-            Deletes the current instance from the storage
-                by calling the method delete.
+        Deletes the current self object from storage
+            by calling the method delete in storage object.
         '''
         models.storage.delete(self)
