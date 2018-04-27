@@ -71,6 +71,10 @@ class Place(BaseModel, Base):
     '''
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         __tablename__ = "places"
+
+        __mapper_args__ = {
+            'confirm_deleted_rows': False}
+
         city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
         user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
         name = Column(String(128), nullable=False)
