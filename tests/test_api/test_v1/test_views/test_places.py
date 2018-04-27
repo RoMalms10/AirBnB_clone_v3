@@ -31,19 +31,26 @@ class Test_places(unittest.TestCase):
         '''
             Testing function that lists all places in a city
         '''
-        user1 = classes['User'](name="Billy", email="Nope", password="Nope")
+        user1 = classes['User'](
+            name="Billy", email="Nope", password="Nope")
         user1.save()
-        state1 = classes['State'](name="California")
+        state1 = classes['State'](
+            name="California")
         state1.save()
-        city1 = classes['City'](name="San Francisco", state_id=state1.id)
+        city1 = classes['City'](
+            name="San Francisco", state_id=state1.id)
         city1.save()
-        city2 = classes['City'](name="Los Angeles", state_id=state1.id)
+        city2 = classes['City'](
+            name="Los Angeles", state_id=state1.id)
         city2.save()
-        place1 = classes['Place'](name="Blue Shoe", city_id=city1.id, user_id=user1.id)
+        place1 = classes['Place'](
+            name="Blue Shoe", city_id=city1.id, user_id=user1.id)
         place1.save()
-        place2 = classes['Place'](name="Little Ranch", city_id=city1.id, user_id=user1.id)
+        place2 = classes['Place'](
+            name="Little Ranch", city_id=city1.id, user_id=user1.id)
         place2.save()
-        place3 = classes['Place'](name="Home Sweet Home", city_id=city2.id, user_id=user1.id)
+        place3 = classes['Place'](
+            name="Home Sweet Home", city_id=city2.id, user_id=user1.id)
         place3.save()
         count = len(city1.places)
         response = self.test_app.get(
@@ -75,7 +82,8 @@ class Test_places(unittest.TestCase):
         state1.save()
         city1 = classes['City'](name="San Francisco", state_id=state1.id)
         city1.save()
-        place1 = classes['Place'](name="Blue Shoe", city_id=city1.id, user_id=user1.id)
+        place1 = classes['Place'](
+            name="Blue Shoe", city_id=city1.id, user_id=user1.id)
         place1.save()
         response = self.test_app.get(
             '/api/v1/places/{}'.format(place1.id))
@@ -93,7 +101,6 @@ class Test_places(unittest.TestCase):
         response = self.test_app.get('/api/v1/places/nopID')
         self.assertEqual(response.status_code, 404)
 
-
     def test_places_delete(self):
         '''
             Testing place delete by ID function
@@ -104,7 +111,8 @@ class Test_places(unittest.TestCase):
         state1.save()
         city1 = classes['City'](name="San Francisco", state_id=state1.id)
         city1.save()
-        place1 = classes['Place'](name="Blue Shoe", city_id=city1.id, user_id=user1.id)
+        place1 = classes['Place'](
+            name="Blue Shoe", city_id=city1.id, user_id=user1.id)
         place1.save()
         response = self.test_app.delete(
             '/api/v1/places/{}'.format(place1.id))
@@ -237,7 +245,8 @@ class Test_places(unittest.TestCase):
         state1.save()
         city1 = classes['City'](name="San Francisco", state_id=state1.id)
         city1.save()
-        place1 = classes['Place'](name="Blue Shoe", city_id=city1.id, user_id=user1.id)
+        place1 = classes['Place'](
+            name="Blue Shoe", city_id=city1.id, user_id=user1.id)
         place1.save()
         data = json.dumps({"name": "Long Horn"})
         response = self.test_app.put(
@@ -260,7 +269,6 @@ class Test_places(unittest.TestCase):
             data=data, content_type='application/json')
         self.assertEqual(response.status_code, 404)
 
-
     def test_places_update_invalid_JSON(self):
         '''
             Test place update with invalid JSON
@@ -271,7 +279,8 @@ class Test_places(unittest.TestCase):
         state1.save()
         city1 = classes['City'](name="San Francisco", state_id=state1.id)
         city1.save()
-        place1 = classes['Place'](name="Blue Shoe", city_id=city1.id, user_id=user1.id)
+        place1 = classes['Place'](
+            name="Blue Shoe", city_id=city1.id, user_id=user1.id)
         place1.save()
         data = '{}'
         response = self.test_app.put(
@@ -293,3 +302,26 @@ class Test_places(unittest.TestCase):
             created_at
             updated_at
         '''
+        user1 = classes['User'](name="Billy", email="Nope", password="Nope")
+        user1.save()
+        state1 = classes['State'](name="California")
+        state1.save()
+        city1 = classes['City'](name="San Francisco", state_id=state1.id)
+        city1.save()
+        place1 = classes['Place'](
+            name="Blue Shoe", city_id=city1.id, user_id=user1.id)
+        place1.save()
+        data = '{"created_at": "nop",\
+                 "updated_at": "nop", "id": "nop", "city_id": "nop"}'
+        response = self.test_app.put(
+            'api/v1/cities/{}'.format(city1.id),
+            data=data, content_type='application/json')
+        check = json.loads(response.data.decode(defenc()))
+        self.assertNotEqual(place1.id, "nop")
+        self.assertNotEqual(place1.updated_at, "nop")
+        self.assertNotEqual(place1.created_at, "nop")
+        self.assertNotEqual(place1.city_id, "nop")
+        place1.delete()
+        user1.delete()
+        city1.delete()
+        state1.delete()
