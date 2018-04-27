@@ -90,10 +90,10 @@ class Test_Cities(unittest.TestCase):
         city1.save()
         response = self.test_app.delete('/api/v1/cities/{}'.format(city1.id))
         check = json.loads(response.data.decode(defenc()))
-        self.assertEqual(storage.get("City", city1.id, ), None)
+        self.assertEqual(storage.get("City", city1.id), None)
         state1.delete()
 
-    def test_cities_(self):
+    def test_cities_delete_invalid_id(self):
         '''
             Test delete function with invalid ID
         '''
