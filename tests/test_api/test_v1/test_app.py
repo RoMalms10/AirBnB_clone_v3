@@ -5,7 +5,7 @@ Unit tests for app.py
 from models import storage
 from api.v1.app import app
 import json
-import sys
+from sys import getdefaultencoding as defenc
 import unittest
 
 
@@ -26,4 +26,30 @@ class Test_app_py(unittest.TestCase):
         """
         response = self.test_app.get('/api/v1/views/error')
         self.assertEqual(json.loads(
-            response.get_data().decode(sys.getdefaultencoding())), {'error': 'Not found'})
+            response.get_data().decode(defenc())), {'error': 'Not found'})
+
+    def test_app_status(self):
+        """
+        Tests /status endpoint
+        """
+        response = self.test_app.get('/api/v1/status')
+        self.assertEqual(json.loads(
+            response.get_data().decode(defenc())),
+            {'status': 'OK'}
+        )
+
+    def test_app_status(self):
+        """
+        Tests /stats endpoint
+        """
+        response = self.test_app.get('/api/v1/stats')
+        self.assertEqual(json.loads(
+            response.get_data().decode(defenc())),
+            {'reviews': 0,
+             'places': 0,
+             'amenities': 0,
+             'states': 0,
+             'users': 0,
+             'reviews': 0,
+             'cities': 0}
+        )
