@@ -130,7 +130,7 @@ class FileStorage:
             return None
 
     def count(self, cls=None):
-         '''
+        '''
         Method that counts how many objects of the type cls being passed.
         Arguments:
             cls: string representing the class name (optional)
