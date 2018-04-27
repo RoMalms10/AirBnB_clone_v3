@@ -62,7 +62,7 @@ class FileStorage:
     def save(self):
         '''
         Saves all changes of the current session by committing the changes
-            to the current storage session by serializes all the values in 
+            to the current storage session by serializes all the values in
             self.__objects to the JSON file.
         '''
         objects_dict = {}

@@ -169,4 +169,4 @@ class DBStorage():
             return len(all_dict)
         else:
             cls_dict = self.all(cls)
-            return len(cls_dict) 
+            return len(cls_dict)
