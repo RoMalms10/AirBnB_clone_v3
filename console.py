@@ -18,27 +18,34 @@ from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     '''
-        Contains the entry point of the command interpreter.
+    Contains the entry point of the command interpreter.
     '''
 
     prompt = ("(hbnb) ")
 
     def do_quit(self, args):
         '''
-            Quit command to exit the program.
+        Quit command to exit the program.
         '''
         return True
 
     def do_EOF(self, args):
         '''
-            Exits after receiving the EOF signal.
+        Exits after receiving the EOF signal.
         '''
         return True
 
     def do_create(self, args):
         '''
-            Create a new instance of class BaseModel and saves it
-            to the JSON file.
+        Create a new instance of a class passed in the command line.
+        The first parameter MUST be a class object. More paramaters can
+            be passed, but need to be passed as <key>="<value>" pairs.
+        Usage:
+            create <class> <param2> ...
+        Example 1:
+            create State name="California"
+        Example 2:
+            create State
         '''
         if len(args) == 0:
             print("** class name missing **")
@@ -72,8 +79,12 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, args):
         '''
-            Print the string representation of an instance baed on
-            the class name and id given as args.
+        Print the string representation of an instance based on
+            the class name and id passed on the command line.
+        Usage:
+            show <class> <param2>
+        Example:
+            show State 8f165686-c98d-46d9-87d9-d6059ade2d99
         '''
         args = shlex.split(args)
         if len(args) == 0:
@@ -101,7 +112,12 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, args):
         '''
-            Deletes an instance based on the class name and id.
+        Deletes an instance based on the class name and id passed on the
+            command line.
+        Usage:
+            destroy <class> <param2>
+        Example:
+            destroy State 8f165686-c98d-46d9-87d9-d6059ade2d99
         '''
         args = shlex.split(args)
         if len(args) == 0:
@@ -129,8 +145,14 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, args):
         '''
-            Prints all string representation of all instances
-            based or not on the class name.
+        Prints all string representations of instances if no class is passed.
+        Can pass a class to print all instances of that class.
+        Usage:
+            all (<class>)
+        Example 1:
+            all
+        Example 2:
+            all State
         '''
         obj_list = []
         storage = models.storage
@@ -156,8 +178,12 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, args):
         '''
-            Update an instance based on the class name and id
-            sent as args.
+        Update an instance based on the class name, id, attribute name, and
+            value of the attribute passed on the command line.
+        Usage:
+            update <class> <id> <attribute name> <value of attribute>
+        Example:
+            update State 8f165686-c98d-46d9-87d9-d6059ade2d99 name "Colorado"
         '''
         storage = models.storage
         storage.reload()
@@ -196,13 +222,17 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         '''
-            Prevents printing anything when an empty line is passed.
+        Prevents printing anything when an empty line is passed.
         '''
         pass
 
     def do_count(self, args):
         '''
-            Counts/retrieves the number of instances.
+        Counts the number of instances of the class passed on the command line.
+        Usage:
+            count <class>
+        Example:
+            count State
         '''
         obj_list = []
         storage = models.storage
@@ -224,7 +254,7 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, args):
         '''
-            Catches all the function names that are not expicitly defined.
+        Catches all the function names that are not expicitly defined.
         '''
         functions = {"all": self.do_all, "update": self.do_update,
                      "show": self.do_show, "count": self.do_count,
@@ -242,6 +272,6 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == "__main__":
     '''
-        Entry point for the loop.
+    Entry point for the loop.
     '''
     HBNBCommand().cmdloop()
