@@ -126,3 +126,18 @@ class Place(BaseModel, Base):
             for key, val in amenity_dict.items():
                 if self.id == val.place_id:
                     self.amenity_ids.append(val.id)
+
+        @property
+        def reviews(self):
+            '''
+                Getter for reviews when using FileStorage system
+                Returns:
+                    A list of Place objects associated with the current City
+            '''
+            cls_dict = models.storage.all(models.classes["Review"])
+            reviews_in_place = []
+            current_place = self.id
+            for key, value in cls_dict.items():
+                if value.place_id == current_place:
+                    reviews_in_place.append(value)
+            return reviews_in_place
